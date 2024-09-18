@@ -2,7 +2,7 @@ import './App.css';
 import { RouterProvider,createBrowserRouter } from 'react-router-dom';
 import User from './Components/getuser/User';
 import Add from './Components/adduser/Add';
-import Edit from './Components/updateuser/Edit';
+import View from './Components/viewuser/View';
 
 
 
@@ -18,9 +18,9 @@ function App(){
       element:<Add/>,
     },
     {
-      path:"/edit/:id",
-      element:<Edit/>,
-    },
+      path:"/view",
+      element:<View/>,
+    }
   ])
 
   return(

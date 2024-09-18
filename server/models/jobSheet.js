@@ -8,14 +8,14 @@ const jobSheetSchema = new mongoose.Schema({
    },
   clientName: {
     type: String,
-    minlength: 3,
+    minlength: 1,
     maxlength: 100,
     required: true
   },
   contactInfo: {
     type: String,
     minlength: 10,
-    maxlength: 100,
+    maxlength: 10,
     required: true
   },
   receiveDate: {
@@ -33,24 +33,24 @@ const jobSheetSchema = new mongoose.Schema({
     required: true
   },
   uploadInventoryImage: {
-    type: Buffer,
+    type: String,
     required: false
   },  
   reportedIssues: {
     type: String,
-    minlength: 5,
+    minlength: 1,
     maxlength: 500,
     required: false
   },
   clientNotes: {
     type: String,
-    minlength: 5,
+    minlength: 1,
     maxlength: 500,
     required: false
   },
   assignedTechnician: {
     type: String,
-    minlength: 3,
+    minlength: 1,
     maxlength: 100,
     required: false
   },

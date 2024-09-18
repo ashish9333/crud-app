@@ -17,14 +17,29 @@ const User = () => {
         console.error('Error:', error);
       });
   }, [])
-  
+
+  const handleDelete=(id)=>{
+    axios.delete(`http://localhost:8000/job/deleteJobSheet/${id}`)
+    .then((response)=>{
+      console.log("deleted sucesssfully",response.data)
+      const updatedJobSheets = [...jobSheets];
+                    const index = updatedJobSheets.findIndex(jobSheet => jobSheet._id === id);
+
+          if (index !== -1) {
+            updatedJobSheets.splice(index, 1);
+            setjobSheets(updatedJobSheets);
+          }
+    }).catch(error => {
+      console.error('Error deleting job sheet:', error);
+    });
+  }
+
   return (
     <div className='userTable'>
       <Link to={"/add"} className='addButton'>New Job Sheet</Link>
       <table border={1} cellPadding={10} cellSpacing={0}>
         <thead>
             <tr>
-                <th>#</th>
                 <th>Client Id</th>
                 <th>Client Name</th>
                 <th>Contact Info</th>
@@ -41,10 +56,9 @@ const User = () => {
         </thead>
         <tbody>
             {
-            jobSheets.map((jobSheets, index) => (
+            jobSheets.length > 0 && jobSheets.map((jobSheets, index) => (
               <tr key={jobSheets._id}>
-                <td>{index + 1}</td>
-                <td>{jobSheets.clientId}</td>
+                <td>{jobSheets.id}</td>
                 <td>{jobSheets.clientName}</td>
                 <td>{jobSheets.contactInfo}</td>
                 <td>{jobSheets.receiveDate}</td>
@@ -56,12 +70,21 @@ const User = () => {
                 <td>{jobSheets.deadline}</td>
                 <td>{jobSheets.status}</td>
                 <td className='actionButtons'>
-                  <button>View</button>
-                  <Link to={`/edit/${jobSheets._id}`}>Edit</Link>
-                  <button>Delete</button>
+                  <div className="flex">
+                  <Link to={`/View/${jobSheets._id}`}>
+                    <button>View</button>
+                  </Link>
+                  <Link to={`/add?id=${jobSheets?._id}`}>Edit</Link>
+                  <button onClick={() => handleDelete(jobSheets._id)}>Delete</button>
+                  </div>
                 </td>
               </tr>
             ))
+          }
+          {
+            jobSheets.length === 0 && <tr className='norecord'>
+            <td colSpan="12" className="centerText">No Record Found</td>
+          </tr>
           }
         </tbody>
       </table>

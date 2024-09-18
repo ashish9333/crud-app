@@ -1,0 +1,26 @@
+/* src/components/ViewJobSheet.css */
+.viewJobSheet {
+    padding: 20px;
+  }
+  
+  .viewJobSheet h2 {
+    margin-bottom: 20px;
+  }
+  
+  .viewJobSheet ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .viewJobSheet li {
+    margin-bottom: 10px;
+  }
+  
+  .error {
+    color: red;
+  }
+  
+  .loading {
+    color: gray;
+  }
+  

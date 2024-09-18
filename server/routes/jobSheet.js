@@ -45,7 +45,7 @@ router.post('/addJobSheet', async (req, res) => {
 
 
   router.get('/getJobSheets', async (req, res) => {
-    const { searchQuery } = req.query;
+    const { searchQuery, id } = req.query;
       const query = {};
     
     if (searchQuery) {
@@ -57,6 +57,9 @@ router.post('/addJobSheet', async (req, res) => {
           $regex: new RegExp(searchQuery, 'i') 
         };
       }
+    }
+    if(id) {
+      query._id = id;
     }
     try {
       const jobSheets = await JobSheet.find(query).exec();
