@@ -3,6 +3,9 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import jobsheet from './routes/jobSheet.js';
+import cors from 'cors';
+
+
 const app = express();
 dotenv.config();
 
@@ -11,6 +14,7 @@ const mongoUrl = process.env.MONGO_URL;
 
 //Body parser MiddleWare
 app.use(bodyParser.json());
+app.use(cors()) 
 app.use('/job', jobsheet);
 
 mongoose.connect(mongoUrl).then(() => {

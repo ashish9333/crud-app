@@ -75,5 +75,27 @@ router.post('/addJobSheet', async (req, res) => {
     }
   });
   
+  router.put('/updateJobSheet/:id', async (req, res) => {
+    const { error } = jobSheetSchema.validate(req.body);
+    if (error) {
+        return res.status(400).json({ error: error.details[0].message });
+    }
+
+    try {
+        const updatedJobSheet = await JobSheet.findByIdAndUpdate(
+            req.params.id,
+            { $set: req.body },
+            { new: true, runValidators: true }
+        );
+
+        if (!updatedJobSheet) {
+            return res.status(404).json({ message: 'Job sheet not found' });
+        }
+
+        res.status(200).json({ message: "Job sheet updated successfully", jobSheet: updatedJobSheet });
+    } catch (err) {
+        res.status(500).json({ message: 'Error updating job sheet', error: err.message });
+    }
+});
 
   export default router;

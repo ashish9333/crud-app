@@ -22,6 +22,10 @@ const jobSheetSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
+  deadline: {
+    type: Date,
+    required: true
+  },
   inventoryReceived: {
     type: String,
     minlength: 1,
@@ -31,7 +35,7 @@ const jobSheetSchema = new mongoose.Schema({
   uploadInventoryImage: {
     type: Buffer,
     required: false
-  },
+  },  
   reportedIssues: {
     type: String,
     minlength: 5,
@@ -63,7 +67,7 @@ const jobSheetSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['Pending', 'In Progress', 'Completed', 'Closed'],
+    enum: ['Pending', 'InProgress', 'Completed', 'Closed'],
     required: true
   }
 });
