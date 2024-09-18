@@ -47,12 +47,12 @@ const User = () => {
                 <td>{jobSheets.clientId}</td>
                 <td>{jobSheets.clientName}</td>
                 <td>{jobSheets.contactInfo}</td>
-                <td>{jobSheets.receivedDate}</td>
+                <td>{jobSheets.receiveDate}</td>
                 <td>{jobSheets.inventoryReceived}</td>
                 <td>{jobSheets.reportedIssues}</td>
                 <td>{jobSheets.clientNotes}</td>
                 <td>{jobSheets.assignedTechnician}</td>
-                <td>{jobSheets.estimatedAmount}</td>
+                <td>{jobSheets.estimatedAmounts}</td>
                 <td>{jobSheets.deadline}</td>
                 <td>{jobSheets.status}</td>
                 <td className='actionButtons'>
