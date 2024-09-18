@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Add.css";
 
@@ -21,6 +21,7 @@ const Add = () => {
     }
 
     const [user,setUser]=useState(users);
+    const navigate =useNavigate(); 
 
     const inputHandler = (e)=>{
         const {name,value}=e.target;
@@ -33,6 +34,7 @@ const Add = () => {
         console.log(user);
         await axios.post("http://localhost:8000/job/addJobSheet",user)
         .then((response)=>{
+            navigate("/")
             console.log(response)
         }).catch(error=>console.log(error))
     }

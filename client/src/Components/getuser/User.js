@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 import axios from 'axios'; 
 
 const User = () => {
-  const [jobSheets, setJobSheets] = useState([]);
+  const [jobSheets, setjobSheets] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/job/getJobSheets')
+    axios.get('http://localhost:8000/job/getjobSheets')
       .then(response => {
-        setJobSheets(response.data.jobsheets ||[]); // Store the data in the state
+        setjobSheets(response.data.jobSheets || []); // Store the data in the state
         console.log('Success:', response.data);
       })
       .catch(error => {
@@ -41,23 +41,23 @@ const User = () => {
         </thead>
         <tbody>
             {
-            jobSheets.map((jobSheet, index) => (
-              <tr key={jobSheet._id}>
+            jobSheets.map((jobSheets, index) => (
+              <tr key={jobSheets._id}>
                 <td>{index + 1}</td>
-                <td>{jobSheet.clientId}</td>
-                <td>{jobSheet.clientName}</td>
-                <td>{jobSheet.contactInfo}</td>
-                <td>{jobSheet.receivedDate}</td>
-                <td>{jobSheet.inventoryReceived}</td>
-                <td>{jobSheet.reportedIssues}</td>
-                <td>{jobSheet.clientNotes}</td>
-                <td>{jobSheet.assignedTechnician}</td>
-                <td>{jobSheet.estimatedAmount}</td>
-                <td>{jobSheet.deadline}</td>
-                <td>{jobSheet.status}</td>
+                <td>{jobSheets.clientId}</td>
+                <td>{jobSheets.clientName}</td>
+                <td>{jobSheets.contactInfo}</td>
+                <td>{jobSheets.receivedDate}</td>
+                <td>{jobSheets.inventoryReceived}</td>
+                <td>{jobSheets.reportedIssues}</td>
+                <td>{jobSheets.clientNotes}</td>
+                <td>{jobSheets.assignedTechnician}</td>
+                <td>{jobSheets.estimatedAmount}</td>
+                <td>{jobSheets.deadline}</td>
+                <td>{jobSheets.status}</td>
                 <td className='actionButtons'>
                   <button>View</button>
-                  <Link to={`/edit/${jobSheet._id}`}>Edit</Link>
+                  <Link to={`/edit/${jobSheets._id}`}>Edit</Link>
                   <button>Delete</button>
                 </td>
               </tr>
